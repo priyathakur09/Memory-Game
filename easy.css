@@ -1,0 +1,341 @@
+
+body{
+    background: linear-gradient(to top, #45896b, #3cc392);
+}
+
+.main-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   /* border: 2px solid;*/
+    height: 100vh;
+    
+}
+.div1{
+    border: 2px solid;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    height: 10vh;
+    width: 7vw;
+    background-color: black;
+    /*border: 1px solid white;*/
+    margin: 5px;
+}
+.small-div{
+   /* border: 2px solid;*/
+    display: flex;
+    /*justify-content: space-around;*/
+    flex-direction: row;
+    border-radius: 8px;
+}
+.but-div{
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    
+}
+button{
+    border-radius: 8px;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+button:hover{
+    background-color: rgba(97, 77, 4, 0.618);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.div1 {
+    width: 130px; /* Fixed width for boxes */
+    height: 120px; /* Fixed height for boxes */
+    background-color: black;
+   /* border: 2px solid #ccc; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.div1 img {
+    width: 100%;        /* Image will take up full width of the box */
+    height: 100%;       /* Image will take up full height of the box */
+    object-fit: cover;  /* Ensures image is scaled to cover the box proportionally */
+    border-radius: 6px; /* Optional: Rounded corners for images */
+}
+
+.div1.flipped {
+    background-color: white; /* Different background color when flipped */
+}
+
+.timer {
+    font-size: 1.5rem;
+    color: white;
+    margin: 20px 0;
+    color: black;
+}
+
+
+/* button {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    margin: 20px;
+}
+
+button:hover {
+    background-color: rgba(9, 63, 66, 0.618);
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General Styles */
+body {
+    background: linear-gradient(to top, #45896b, #3cc392);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Prevent overflow of body */
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow vertical scrolling */
+    flex-grow: 1; /* Allow it to expand and take available space */
+}
+
+.div1 {
+    border: 2px solid;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    background-color: black;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Game Board */
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default 4 columns */
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.div1 {
+    width: 100px; /* Default box size */
+    height: 100px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+}
+
+.div1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.div1.flipped {
+    background-color: white;
+}
+
+.timer {
+    font-size: 1.5rem;
+    color: black;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Buttons */
+.but-div {
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    border-radius: 8px;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    margin: 10px 20px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem; /* Make button text size responsive */
+}
+
+button:hover {
+    background-color: rgba(97, 77, 4, 0.618);
+}
+
+/* Responsive Styles */
+
+/* Mobile View (max-width: 768px) */
+@media (max-width: 768px) {
+    .board {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+        gap: 10px;
+    }
+
+    .div1 {
+        width: 80px; /* Slightly smaller boxes */
+        height: 80px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .timer {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+
+    /* Ensure no double shading */
+    body {
+        background: linear-gradient(to top, #45896b, #3cc392);
+    }
+
+    /* Ensure buttons remain visible */
+    .but-div {
+        padding-bottom: 10px;
+    }
+}
+
+/* Tablet View (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .board {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+        gap: 15px;
+    }
+
+    .div1 {
+        width: 100px; /* Slightly larger than mobile */
+        height: 100px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .timer {
+        font-size: 1.4rem;
+    }
+
+    /* Ensure background color remains consistent */
+    body {
+        background: linear-gradient(to top, #45896b, #3cc392);
+    }
+}
+
+/* Large Tablet / Desktop View (min-width: 1024px and higher) */
+@media (min-width: 1024px) {
+    .board {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+        gap: 20px;
+    }
+
+    .div1 {
+        width: 120px; /* Adjust size for larger screens */
+        height: 120px;
+    }
+
+    button {
+        padding: 16px;
+        font-size: 1.1rem;
+    }
+
+    .timer {
+        font-size: 1.8rem;
+        margin-top: 30px;
+    }
+
+    /* Ensure background color is uniform */
+    body {
+        background: linear-gradient(to top, #45896b, #3cc392);
+    }
+}
+
+/* Nest Hub / Small Devices (Specific Devices) */
+@media (max-width: 600px) {
+    .board {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller devices like Nest Hub */
+        gap: 5px;
+    }
+
+    .div1 {
+        width: 70px; /* Smaller box size for very small devices */
+        height: 70px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    .timer {
+        font-size: 1.2rem;
+    }
+
+    /* Allow scroll on smaller devices */
+    .main-div {
+        overflow-y: auto; /* Enable scrolling */
+        height: auto; /* Allow the height to adjust */
+    }
+}

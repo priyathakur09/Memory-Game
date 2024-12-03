@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind-Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-container">
+        <h1>Welcome to Game-Zone</h1>
+
+         <!-- <audio id="background-music" loop autoplay>
+            <source src="music1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>  -->
+
+        <h3>Let's Play</h3>
+        <div class="container">
+            <div class="small-div">
+                <img src="https://t3.ftcdn.net/jpg/06/76/51/94/360_F_676519477_Hc8GxTY84ZkTWLCMwhnsCxLtTmMIfG3w.jpg" height="290" width="400">
+                <div class="div-in">
+                    <h6>Level Easy - Match Fruits</h6>
+                </div>
+                <div class="div-but">
+                    <a href="easy.html"><button>Let's Play</button></a>
+                </div>
+            </div>
+            <div class="small-div">
+                <img src="https://img.freepik.com/premium-photo/picture-flower-with-sun-it_1051578-89968.jpg" height="290" width="400">
+                <div class="div-in">
+                    <h6>Level Medium - Match Flowers</h6>
+                </div>
+                <div class="div-but">
+                    <a href="medium.html"><button>Let's Play</button></a>
+                </div>
+            </div>
+            <div class="small-div">
+                <img src="https://img.freepik.com/premium-photo/colorful-mosaic-squares-with-colors-rainbow_1169880-260369.jpg" height="290" width="400">
+                <div class="div-in">
+                    <h6>Level Hard - Match Colors</h6>
+                </div>
+                <div class="div-but">
+                    <a href="hard.html"><button>Let's Play</button></a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="music-btn">
+            <button id="play-music">Play Music</button>
+        </div>
+
+    </div>
+   
+    
+    <audio id="background-music" loop autoplay>
+        <source src="music1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    
+    <script>
+        document.getElementById("play-music").addEventListener("click", () => {
+            const audio = document.getElementById("background-music");
+            audio.play();
+        });
+    </script>
+    
+</body>
+
+</html>
