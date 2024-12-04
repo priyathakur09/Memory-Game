@@ -1,7 +1,8 @@
+
 const vegetables = [
     "flower1.jpg", "flower2.jpg", "flower3.jpg", "flower4.jpg", "flower5.jpg", "flower6.jpg",
     "flower7.jpg", "flower8.jpg", "flower9.jpg", "flower10.jpg", "flower11.jpg", "flower12.jpg",
-     "flower1.jpg", "flower2.jpg", "flower3.jpg", "flower4.jpg", "flower5.jpg", "flower6.jpg",
+    "flower1.jpg", "flower2.jpg", "flower3.jpg", "flower4.jpg", "flower5.jpg", "flower6.jpg",
     "flower7.jpg", "flower8.jpg", "flower9.jpg", "flower10.jpg", "flower11.jpg", "flower12.jpg"
 ];
 
@@ -21,6 +22,10 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
+
+// Timer variables
+let timeLeft = 300; // Total time in seconds
+let timerInterval;
 
 // Function to handle card flip
 function flipCard(event) {
@@ -58,6 +63,10 @@ function checkForMatch() {
         matchedPairs++;
 
         if (matchedPairs === vegetables.length / 2) {
+            // Ensure timer stops when game is completed
+            clearInterval(timerInterval); // Stop the timer
+            timerInterval = null; // Reset the timer interval variable to avoid accidental restarts
+            console.log("Game Won! Timer stopped."); // Debug log
             setTimeout(() => alert("Congratulations! You matched all the flowers!"), 500);
         }
 
@@ -88,18 +97,56 @@ function resetBoard() {
     [firstCard, secondCard, lockBoard] = [null, null, false];
 }
 
+// Function to handle game over
+function endGame() {
+    clearInterval(timerInterval); // Stop the timer
+    timerInterval = null; // Reset the timer interval
+    alert("Time's up! Game over.");
+    restartGame(); // Optionally restart the game
+}
+
+// Function to start the timer
+function startTimer() {
+    if (timerInterval) {
+        console.log("Timer already running."); // Debug log to avoid multiple timers
+        return;
+    }
+
+    const timerElement = document.getElementById("timer");
+    timerElement.textContent = timeLeft; // Display initial time
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null; // Reset the timer interval
+            console.log("Timer ended. Time's up!"); // Debug log
+            endGame(); // Trigger game over
+        }
+    }, 1000); // Update every second
+}
+
 // Function to restart the game
 function restartGame() {
+    // Stop the timer if running
+    clearInterval(timerInterval);
+    timerInterval = null; // Reset the timer interval
+
+    timeLeft = 300; // Reset time
+    startTimer(); // Start a new timer
+
+    // Reset game logic
     shuffledVegetables = shuffle([...vegetables]);
     matchedPairs = 0;
 
     const cards = document.querySelectorAll(".div1");
-
     cards.forEach((card, index) => {
         card.innerHTML = ""; // Clear any previous images
         card.classList.remove("flipped");
-        card.addEventListener("click", flipCard);
         card.dataset.index = index; // Set the index to match the shuffled array
+        card.addEventListener("click", flipCard);
     });
 }
 
@@ -110,107 +157,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add event listener for the restart button
     const restartButton = document.querySelector('a[href="medium.html"]');
     if (restartButton) {
-        restartButton.addEventListener("click", restartGame);
+        restartButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent navigation
+            restartGame();
+        });
     }
+
+    startTimer(); // Start the timer when the game begins
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let timeLeft = 300; // Total time in seconds
-let timerInterval;
-
-// Function to start the timer
-function startTimer() {
-    const timerElement = document.getElementById("timer");
-    timerElement.textContent = timeLeft; // Display initial time
-
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        timerElement.textContent = timeLeft;
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval); // Stop the timer
-            endGame(); // Trigger game over
-        }
-    }, 1000); // Update every second
-}
-
-// Function to handle game over
-function endGame() {
-    alert("Time's up! Game over.");
-    restartGame(); // Optionally restart the game
-}
-
-// Call startTimer when the game begins
-document.addEventListener("DOMContentLoaded", () => {
-    startTimer();
-    restartGame(); // Start the game as usual
-});
-
-
-
-
-
-
-
-
-
-function restartGame() {
-    // Reset the timer
-    clearInterval(timerInterval);
-    timeLeft = 300; // Reset time
-    startTimer(); // Start the timer again
-
-    // Existing game reset logic
-    shuffledVegetables = shuffle([...vegetables]);
-    matchedPairs = 0;
-
-    const cards = document.querySelectorAll(".div1");
-    cards.forEach((card, index) => {
-        card.innerHTML = ""; // Clear previous images
-        card.classList.remove("flipped"); // Reset flipped state
-        card.dataset.index = index; // Assign index for matching
-        card.addEventListener("click", flipCard); // Add click event
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
